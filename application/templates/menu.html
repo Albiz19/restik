@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Меню ресторанов</title>
+</head>
+<body>
+    <h1>Меню ресторанов</h1>
+    <ul>
+        {% for restaurant in restaurants %}
+            <li>
+                <h2>{{ restaurant.name }}</h2>
+                <p>Адрес: {{ restaurant.address }}</p>
+                <p>Телефон: {{ restaurant.phone_number }}</p>
+                <p>Email: {{ restaurant.email }}</p>
+                <p>Веб-сайт: <a href="{{ restaurant.website }}" target="_blank">{{ restaurant.website }}</a></p>
+                <h3>Меню:</h3>
+                <ul>
+                    {% for item in restaurant.menu_items.all %}
+                        <li>{{ item.name }} - {{ item.price }}</li>
+                    {% endfor %}
+                </ul>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
