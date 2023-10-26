@@ -8,17 +8,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
+    <title>Product Detail</title>
     <link rel="stylesheet" href="{% static 'styles.css' %}">
 </head>
 <body>
-    <div class="container">
-        <h1>Our Menu</h1>
-        <ul class="product-list">
-            {% for product in products %}
-            <li><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></li>
-            {% endfor %}
-        </ul>
+    <div class="container product-detail">
+        <h1>{{ product.name }}</h1>
+        <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        <div class="product-detail-description">
+            <p>{{ product.description }}</p>
+            <strong>Price: ${{ product.price }}</strong>
+        </div>
     </div>
 </body>
 </html>
