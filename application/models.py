@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 class Category(models.Model):
     name = models.CharField(max_length=100, verbose_name='Название категории')
 
-    @property
     def __str__(self):
         return self.name
 
