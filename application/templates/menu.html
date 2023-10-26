@@ -3,22 +3,21 @@
 <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menu</title>
-    <link rel="stylesheet" href="{% static 'styles.css' %}">
-</head>
-<body>
-    <div class="container">
-        <h1>Our Menu</h1>
-        <ul class="product-list">
-            {% for product in products %}
-            <li><a href="{% url 'product_detail' product.id %}">{{ product.name }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-</body>
-</html>
+{% block content %}
+<h1>Меню</h1>
+
+{% for category in categories %}
+    <h2>{{ category.name }}</h2>
+    <ul>
+    {% for product in category.products.all %}
+        <li>
+            <strong>{{ product.name }}</strong> - {{ product.price }} руб. <br>
+            Описание: {{ product.description }}
+            {% if product.on_sale %}
+                <span style="color: red;">По акции!</span>
+            {% endif %}
+        </li>
+    {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}
