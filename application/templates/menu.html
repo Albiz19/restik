@@ -1,23 +1,25 @@
-{% load static %}
+{% extends 'base.html' %}
 
-<link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
+{% block title %}
+РњРµРЅСЋ
+{% endblock %}
 
 {% block content %}
-<h1>Меню</h1>
+<h1>РњРµРЅСЋ</h1>
 
 {% for category in categories %}
     <h2>{{ category.name }}</h2>
     <ul>
     {% for product in category.products.all %}
         <li>
-            <strong>{{ product.name }}</strong> - {{ product.price }} руб. <br>
-            Описание: {{ product.description }}
+            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }} СЂСѓР±. <br>
+            РћРїРёСЃР°РЅРёРµ: {{ product.description }}
             {% if product.on_sale %}
-                <span style="color: red;">По акции!</span>
+                <span style="color: red;">РџРѕ Р°РєС†РёРё!</span>
             {% endif %}
         </li>
     {% endfor %}
     </ul>
 {% endfor %}
+
 {% endblock %}
