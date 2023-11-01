@@ -6,7 +6,7 @@
 
 {% block content %}
     <h1>{{ product.name }}</h1>
-    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+    <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300" height="300" class="center-image">
     <div class="product-detail-description">
         <p>{{ product.description }}</p>
         <strong>Price: ${{ product.price }}</strong>
