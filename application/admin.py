@@ -25,8 +25,8 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(CustomUser)
 class CustomUserAdmin(admin.ModelAdmin):
-    list_display = ('id', 'username', 'email', 'phone')
-    search_fields = ('username', 'email', 'phone')
+    list_display = ('id', 'username', 'email', 'phone', 'first_name', 'last_name', 'birth_date')
+    search_fields = ('username', 'email', 'phone', 'first_name', 'last_name')
 
 
 @admin.register(RestaurantInfo)

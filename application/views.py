@@ -1,14 +1,32 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 
 from .models import Category, Product, Favorite, News
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomAuthenticationForm
+from django.shortcuts import render, redirect
+from .forms import UserProfileForm
+
+
+@login_required(login_url='login')  # Указываем здесь имя URL-адреса для страницы входа
+def profile_view(request):
+    # Проверка на аутентификацию пользователя теперь не нужна, так как login_required сделает это за вас
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            return redirect('profile')  # Используем имя URL-адреса для перенаправления на страницу профиля
+    else:
+        form = UserProfileForm(instance=request.user)
+
+    return render(request, 'profile.html', {'form': form})
 
 
 def news_view(request):
     news_items = News.objects.all()
     return render(request, 'news.html', {'news_items': news_items})
+
 
 # Домашняя страница
 def home_view(request):
@@ -46,7 +64,6 @@ def login_view(request):
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
-
 
 # # Обработчик выхода
 # from django.contrib.auth import logout

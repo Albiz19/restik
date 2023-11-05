@@ -19,12 +19,12 @@
                 <!-- Убедитесь, что у вас есть маршруты 'menu', 'news', 'profile' в urls.py -->
                 <li><a href="{% url 'menu' %}">Меню</a></li>
                 <li><a href="{% url 'news' %}">Новости</a></li>
+                <li><a href="{% url 'profile_url' %}">Профиль</a></li>
             </ul>
         </nav>
         <div class="auth-links">
             {% if user.is_authenticated %}
                 <p>Привет, {{ user.username }}!</p>
-                <a href="{% url 'logout' %}">Выйти</a>
             {% else %}
                 <a href="{% url 'login' %}">Войти</a>
             {% endif %}
