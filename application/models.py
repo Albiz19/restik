@@ -44,16 +44,6 @@ class CustomUser(AbstractUser):
     )
 
 
-
-class News(models.Model):
-    title = models.CharField(max_length=150, verbose_name='Заголовок новости')
-    content = models.TextField(verbose_name='Содержание')
-    pub_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
-
-    def __str__(self):
-        return self.title
-
-
 class RestaurantInfo(models.Model):
     name = models.CharField(max_length=150, verbose_name='Название ресторана')
     address = models.CharField(max_length=250, verbose_name='Адрес')
@@ -96,3 +86,15 @@ class Favorite(models.Model):
         return f"{self.user.username} - {self.product.name}"
 
 
+class News(models.Model):
+    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    content = models.TextField(verbose_name='Контент')
+    published_date = models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')
+
+    class Meta:
+        verbose_name = 'Новость'
+        verbose_name_plural = 'Новости'
+        ordering = ['-published_date']
+
+    def __str__(self):
+        return self.title

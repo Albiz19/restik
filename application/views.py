@@ -1,9 +1,19 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from .models import Category, Product, Favorite
+from .models import Category, Product, Favorite, News
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from .forms import CustomAuthenticationForm
+
+
+def news_view(request):
+    news_items = News.objects.all()
+    return render(request, 'news.html', {'news_items': news_items})
+
+# Домашняя страница
+def home_view(request):
+    # Здесь может быть логика для получения данных для домашней страницы, если это необходимо.
+    return render(request, 'home.html')
 
 
 def menu(request):
@@ -36,3 +46,14 @@ def login_view(request):
     else:
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
+
+
+# # Обработчик выхода
+# from django.contrib.auth import logout
+# from django.shortcuts import redirect
+#
+#
+# def logout_view(request):
+#     logout(request)
+#     # Перенаправление на домашнюю страницу после выхода
+#     return redirect('home')

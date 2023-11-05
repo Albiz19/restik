@@ -1,25 +1,39 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Default Title{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 </head>
 <body>
-    <div class="container">
+    <header>
+        <div class="logo">
+            <!-- Убедитесь, что у вас есть 'home' маршрут в urls.py -->
+            <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Логотип ресторана" height="50"></a>
+        </div>
+        <nav>
+            <ul>
+                <!-- Убедитесь, что у вас есть маршруты 'menu', 'news', 'profile' в urls.py -->
+                <li><a href="{% url 'menu' %}">Меню</a></li>
+                <li><a href="{% url 'news' %}">Новости</a></li>
+            </ul>
+        </nav>
+        <div class="auth-links">
+            {% if user.is_authenticated %}
+                <p>Привет, {{ user.username }}!</p>
+                <a href="{% url 'logout' %}">Выйти</a>
+            {% else %}
+                <a href="{% url 'login' %}">Войти</a>
+            {% endif %}
+        </div>
+    </header>
+    <main class="container">
         {% block content %}
+        <!-- Содержимое основной части страницы будет здесь -->
         {% endblock %}
-    </div>
-    <div>
-      <!-- ... другие ссылки ... -->
-      {% if user.is_authenticated %}
-        <p>Привет, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Выйти</a>
-      {% else %}
-        <a href="{% url 'login' %}">Войти</a>
-      {% endif %}
-    </div>
+    </main>
 </body>
 </html>
