@@ -24,12 +24,12 @@ class Product(models.Model):
 class CustomUser(AbstractUser):
     phone = models.CharField(max_length=15, blank=True, null=True, verbose_name='Телефон')
 
-    # Если вы используете свои связи ManyToMany, добавьте related_name
+    # Add related_name in groups and user_permissions to avoid clash
     groups = models.ManyToManyField(
         'auth.Group',
         blank=True,
         help_text='The groups this user belongs to. A user will get all permissions granted to each of their groups.',
-        related_name="customuser_set",
+        related_name="customuser_groups",
         related_query_name="customuser",
         verbose_name='groups',
     )
@@ -38,10 +38,11 @@ class CustomUser(AbstractUser):
         'auth.Permission',
         blank=True,
         help_text='Specific permissions for this user.',
-        related_name="customuser_set",
+        related_name="customuser_permissions",
         related_query_name="customuser",
         verbose_name='user permissions',
     )
+
 
 
 class News(models.Model):
@@ -73,9 +74,25 @@ class Cart(models.Model):
 
 
 class Favorite(models.Model):
-    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='favorites',
-                             verbose_name='Пользователь')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')
+    user = models.ForeignKey(
+        CustomUser,
+        on_delete=models.CASCADE,
+        related_name='favorites',
+        verbose_name='Пользователь'
+    )
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE,
+        verbose_name='Товар'
+    )
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранные'
+        unique_together = ('user', 'product')
 
     def __str__(self):
         return f"{self.user.username} - {self.product.name}"
+
+

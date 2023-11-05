@@ -43,6 +43,6 @@ class CartAdmin(admin.ModelAdmin):
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product')
-    list_filter = ('user', 'product')
+    list_display = ('id', 'user', 'product', 'timestamp')
+    list_filter = ['user']  # или другое поле модели Product, которое вы хотите использовать для фильтрации
     search_fields = ('user__username', 'product__name')

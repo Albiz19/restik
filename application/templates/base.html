@@ -12,5 +12,14 @@
         {% block content %}
         {% endblock %}
     </div>
+    <div>
+      <!-- ... другие ссылки ... -->
+      {% if user.is_authenticated %}
+        <p>Привет, {{ user.username }}!</p>
+        <a href="{% url 'logout' %}">Выйти</a>
+      {% else %}
+        <a href="{% url 'login' %}">Войти</a>
+      {% endif %}
+    </div>
 </body>
 </html>

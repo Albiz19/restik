@@ -25,10 +25,13 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path('menu/', views.menu, name='menu'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('add_to_favorites/<int:product_id>/', views.add_to_favorites, name='add_to_favorites'),
+    path('login/', views.login_view, name='login'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 
