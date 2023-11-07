@@ -22,13 +22,20 @@ from django.conf.urls.static import static
 
 
 urlpatterns = [
+    path('', views.home_view, name='home'),
+    path('news/', views.news_view, name='news'),
+    path('profile/', views.profile_view, name='profile_url'),
     path("admin/", admin.site.urls),
     path('menu/', views.menu, name='menu'),
     path('product/<int:product_id>/', views.product_detail, name='product_detail'),
+    path('add_to_favorites/<int:product_id>/', views.add_to_favorites, name='add_to_favorites'),
+    path('login/', views.login_view, name='login'),
+    path('register/', views.register, name='register'),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 
 
