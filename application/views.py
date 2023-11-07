@@ -1,11 +1,13 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
 
 from .models import Category, Product, Favorite, News
 from django.contrib.auth import authenticate, login
 from .forms import CustomAuthenticationForm
-from django.shortcuts import render, redirect
 from .forms import UserProfileForm
+from django.shortcuts import render, redirect
+from .forms import UserRegisterForm
+from django.contrib import messages
 
 
 @login_required(login_url='login')  # Указываем здесь имя URL-адреса для страницы входа
@@ -65,6 +67,7 @@ def login_view(request):
         form = CustomAuthenticationForm()
     return render(request, 'login.html', {'form': form})
 
+
 # # Обработчик выхода
 # from django.contrib.auth import logout
 # from django.shortcuts import redirect
@@ -74,3 +77,15 @@ def login_view(request):
 #     logout(request)
 #     # Перенаправление на домашнюю страницу после выхода
 #     return redirect('home')
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}!')
+            return redirect('login')  # Предполагая, что у вас есть URL с именем 'login'
+    else:
+        form = UserRegisterForm()
+    return render(request, 'register.html', {'form': form})
