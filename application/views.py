@@ -8,6 +8,8 @@ from .forms import UserProfileForm
 from django.shortcuts import render, redirect
 from .forms import UserRegisterForm
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 
 
 @login_required(login_url='login')  # Указываем здесь имя URL-адреса для страницы входа
@@ -89,3 +91,10 @@ def register(request):
     else:
         form = UserRegisterForm()
     return render(request, 'register.html', {'form': form})
+
+# views.py
+
+def logout_view(request):
+    logout(request)
+    return redirect('home')
+
