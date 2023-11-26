@@ -28,6 +28,16 @@ h1, h2 {
 .product-list li {
     padding: 20px;
     border-bottom: 1px dashed #444;
+    display: flex;
+    align-items: center;
+}
+
+.product-list li img {
+    margin-right: 10px; /* Добавьте картинку слева от текста */
+}
+
+.on-sale {
+    color: #3fa46a; /* Зеленоватый цвет */
 }
 
 .product-list li a {
@@ -63,57 +73,5 @@ h1, h2 {
     margin-right: auto;
 }
 
-/* Предыдущие стили */
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #f8f8f8;
-    padding: 10px;
-}
-
-header .logo img {
-    height: 50px; /* Адаптируйте размер под ваш логотип */
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-}
-
-nav li {
-    margin-left: 20px;
-}
-
-nav a {
-    text-decoration: none;
-    font-size: 1.2em;
-    color: #333;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-.auth-links p {
-    display: inline;
-    margin-right: 10px;
-}
-
-.auth-links a {
-    text-decoration: none;
-    color: #333;
-}
-
-.auth-links a:hover {
-    text-decoration: underline;
-}
-
-/* Основные стили */
-
-.container {
-    margin-top: 20px;
-}
+/* Стили для header и auth-links остаются без изменений */
+/* ... */

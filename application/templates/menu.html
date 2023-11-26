@@ -9,13 +9,19 @@
 
 {% for category in categories %}
     <h2>{{ category.name }}</h2>
-    <ul>
+    <ul class="product-list">
     {% for product in category.products.all %}
         <li>
-            <a href="{% url 'product_detail' product.id %}">{{ product.name }}</a> - {{ product.price }} руб. <br>
-            Описание: {{ product.description }}
+            <!-- Оберните img и текст внутри одной ссылки -->
+            <a href="{% url 'product_detail' product.id %}" class="product-link">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px; height: 200px; object-fit: cover;">
+            </a>
+            <div class="product-info">
+                    {{ product.name }} - {{ product.price }} руб.<br>
+                    Описание: {{ product.description }}
+            </div>
             {% if product.on_sale %}
-                <span style="color: red;">По акции!</span>
+                <span class="on-sale">По акции!</span>
             {% endif %}
         </li>
     {% endfor %}
