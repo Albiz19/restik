@@ -104,7 +104,6 @@ class Favorite(models.Model):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
-        related_name='product',
         verbose_name='Товар'
     )
     timestamp = models.DateTimeField(auto_now_add=True)
