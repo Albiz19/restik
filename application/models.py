@@ -13,6 +13,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Категория'
+        verbose_name_plural = 'Категории'
+
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='products', verbose_name='Категория')
@@ -24,6 +28,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Товар'
+        verbose_name_plural = 'Товары'
 
 
 class CustomUser(AbstractUser):
@@ -68,6 +76,10 @@ class RestaurantInfo(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = 'Информация о ресторане'
+        verbose_name_plural = 'Информация о ресторанах'
+
 
 class Cart(models.Model):
     user = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name='cart', verbose_name='Пользователь')
@@ -76,6 +88,10 @@ class Cart(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.product.name}"
+
+    class Meta:
+        verbose_name = 'Корзина'
+        verbose_name_plural = 'Корзины'
 
 
 class Favorite(models.Model):
@@ -88,6 +104,7 @@ class Favorite(models.Model):
     product = models.ForeignKey(
         Product,
         on_delete=models.CASCADE,
+        related_name='product',
         verbose_name='Товар'
     )
     timestamp = models.DateTimeField(auto_now_add=True)
