@@ -12,6 +12,7 @@ from django.contrib.auth import logout
 from django.shortcuts import redirect
 
 
+
 @login_required(login_url='login')  # Указываем здесь имя URL-адреса для страницы входа
 def profile_view(request):
     # Проверка на аутентификацию пользователя теперь не нужна, так как login_required сделает это за вас
@@ -20,7 +21,7 @@ def profile_view(request):
         form = UserProfileForm(request.POST, instance=request.user)
         if form.is_valid():
             form.save()
-            return redirect('profile')  # Используем имя URL-адреса для перенаправления на страницу профиля
+            return redirect('profile_url')  # Используем имя URL-адреса для перенаправления на страницу профиля
     else:
         form = UserProfileForm(instance=request.user)
 
@@ -42,15 +43,31 @@ def menu(request):
     categories = Category.objects.all()
     return render(request, 'menu.html', {'categories': categories})
 
+@login_required(login_url='login')
+def favorites_view(request):
+    favorites = Favorite.objects.filter(user=request.user)
+    return render(request, 'favorites.html', {'favorites': favorites})
+
+@login_required(login_url='login')
+def remove_from_favorites(request, product_id):
+    Favorite.objects.filter(user=request.user, product_id=product_id).delete()
+    return redirect(request.META.get('HTTP_REFERER', 'home'))
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    return render(request, 'product_detail.html', {'product': product})
+    is_favorite = False  # Предполагаем, что товар не в избранном
+
+    if request.user.is_authenticated:
+        # Проверяем, есть ли продукт в избранном у пользователя
+        is_favorite = Favorite.objects.filter(user=request.user, product=product).exists()
+
+    return render(request, 'product_detail.html', {'product': product, 'is_favorite': is_favorite})
 
 
+@login_required(login_url='login')  # Указываем здесь имя URL-адреса для страницы входа
 def add_to_favorites(request, product_id):
-    product = Product.objects.get(id=product_id)
-    Favorite.objects.create(user=request.user, product=product)
+    product = get_object_or_404(Product, id=product_id)
+    Favorite.objects.get_or_create(user=request.user, product=product)  # Используйте get_or_create для избежания дубликатов
     return redirect('product_detail', product_id=product_id)
 
 

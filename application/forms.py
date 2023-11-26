@@ -1,6 +1,5 @@
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.forms import UserChangeForm
-from .models import CustomUser
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
@@ -15,7 +14,7 @@ class UserProfileForm(UserChangeForm):
     password = None  # Исключаем поле пароля из формы
 
     class Meta:
-        model = CustomUser
+        model = User
         fields = ('username', 'email', 'first_name', 'last_name')
 
 

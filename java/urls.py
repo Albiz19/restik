@@ -32,6 +32,8 @@ urlpatterns = [
     path('login/', views.login_view, name='login'),
     path('register/', views.register, name='register'),
     path('logout/', views.logout_view, name='logout'),
+    path('favorites/', views.favorites_view, name='favorites'),
+    path('remove_from_favorites/<int:product_id>/', views.remove_from_favorites, name='remove_from_favorites'),
 ]
 
 if settings.DEBUG:
