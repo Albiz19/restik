@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Избранное
+{% endblock %}
+
+{% block content %}
+<h1>Избранное</h1>
+
+<ul class="product-list">
+{% for favorite in favorites %}
+    <li>
+        <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" width="50" height="50" class="center-image">
+        <div class="product-info">
+            <a href="{% url 'product_detail' favorite.product.id %}" class="product-link">{{ favorite.product.name }}</a> - {{ favorite.product.price }} руб.<br>
+            Описание: {{ favorite.product.description }}
+            <!-- Можно добавить ссылку для удаления из избранного -->
+            <a href="{% url 'remove_from_favorites' favorite.product.id %}" class="button">Удалить из избранного</a>
+        </div>
+    </li>
+{% empty %}
+    <li>Вы пока ничего не добавили в избранное.</li>
+{% endfor %}
+</ul>
+
+{% endblock %}

@@ -11,7 +11,15 @@
     <div class="product-detail-description">
         <p>{{ product.description }}</p>
         <strong>Price: ${{ product.price }}</strong>
-        <a href="{% url 'add_to_favorites' product.id %}">Добавить в избранное</a>
+        {% if user.is_authenticated %}
+            {% if is_favorite %}
+                <a href="{% url 'remove_from_favorites' product.id %}" class="button">Удалить из избранного</a>
+            {% else %}
+                <a href="{% url 'add_to_favorites' product.id %}" class="button">Добавить в избранное</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="button">Войти, чтобы добавить в избранное</a>
+        {% endif %}
     </div>
 
 {% endblock %}
