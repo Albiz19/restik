@@ -1,12 +1,12 @@
 <!-- login.html -->
 
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
 
-{% block content %}
-  <h2>Авторизация</h2>
-  <form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Войти</button>
+{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
+  <h2>Авторизация</h2> <!-- Заголовок страницы -->
+  <form method="post"> <!-- Форма для авторизации с методом POST -->
+    {% csrf_token %} <!-- Токен CSRF для защиты от CSRF-атак -->
+    {{ form.as_p }} <!-- Рендеринг формы Django. as_p означает, что каждое поле будет обернуто в тег <p> -->
+    <button type="submit">Войти</button> <!-- Кнопка для отправки формы -->
   </form>
-{% endblock %}
+{% endblock %} <!-- Конец блока 'content' -->

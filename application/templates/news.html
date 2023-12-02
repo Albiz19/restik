@@ -1,18 +1,18 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
 
 {% block title %}Новости{% endblock %}
 
-{% block content %}
-<h1>Новости</h1>
-<div class="news-list">
-    {% for item in news_items %}
-        <div class="news-item">
-            <h2>{{ item.title }}</h2>
-            <p>{{ item.content }}</p>
-            <p class="date">Опубликовано: {{ item.published_date|date:"d M Y H:i" }}</p>
+{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
+<h1>Новости</h1> <!-- Заголовок раздела новостей -->
+<div class="news-list"> <!-- Контейнер для списка новостей -->
+    {% for item in news_items %} <!-- Цикл по всем новостным элементам -->
+        <div class="news-item"> <!-- Блок для отдельной новости -->
+            <h2>{{ item.title }}</h2> <!-- Заголовок новости -->
+            <p>{{ item.content }}</p> <!-- Содержимое новости -->
+            <p class="date">Опубликовано: {{ item.published_date|date:"d M Y H:i" }}</p> <!-- Дата публикации новости, форматируется в заданный формат -->
         </div>
-    {% empty %}
-        <p>Новостей пока нет.</p>
+    {% empty %} <!-- Случай, когда новостей нет -->
+        <p>Новостей пока нет.</p> <!-- Сообщение об отсутствии новостей -->
     {% endfor %}
 </div>
-{% endblock %}
+{% endblock %} <!-- Конец блока 'content' -->
