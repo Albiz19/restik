@@ -1,11 +1,12 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="register-form">
-    <h2>Register</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Register</button>
+{% extends "base.html" %} <!-- Расширение базового шаблона 'base.html' -->
+
+{% block content %} <!-- Определение содержимого блока 'content', который будет вставлен в базовый шаблон -->
+<div class="register-form"> <!-- Контейнер для формы регистрации -->
+    <h2>Register</h2> <!-- Заголовок формы -->
+    <form method="POST"> <!-- Форма регистрации с методом POST для отправки данных -->
+        {% csrf_token %} <!-- Токен CSRF для защиты от CSRF-атак -->
+        {{ form.as_p }} <!-- Автоматическое создание полей формы. Каждое поле обернуто в тег <p> -->
+        <button type="submit">Register</button> <!-- Кнопка для отправки формы -->
     </form>
 </div>
-{% endblock %}
+{% endblock %} <!-- Конец блока 'content' -->

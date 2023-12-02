@@ -1,26 +1,27 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
 
 {% block title %}
 Меню
 {% endblock %}
 
-{% block content %}
-<h1>Меню</h1>
+{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
+<h1>Меню</h1> <!-- Главный заголовок страницы -->
 
-{% for category in categories %}
-    <h2>{{ category.name }}</h2>
-    <ul class="product-list">
-    {% for product in category.products.all %}
-        <li>
-            <!-- Оберните img и текст внутри одной ссылки -->
+{% for category in categories %} <!-- Цикл по всем категориям блюд -->
+    <h2>{{ category.name }}</h2> <!-- Заголовок для каждой категории -->
+    <ul class="product-list"> <!-- Начало списка продуктов для каждой категории -->
+    {% for product in category.products.all %} <!-- Цикл по всем продуктам в текущей категории -->
+        <li> <!-- Элемент списка для каждого продукта -->
+            <!-- Ссылка на страницу детального просмотра продукта -->
             <a href="{% url 'product_detail' product.id %}" class="product-link">
+                <!-- Изображение продукта с фиксированным размером и стилем object-fit -->
                 <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width: 200px; height: 200px; object-fit: cover;">
             </a>
-            <div class="product-info">
-                    {{ product.name }} - {{ product.price }} руб.<br>
-                    Описание: {{ product.description }}
+            <div class="product-info"> <!-- Блок с информацией о продукте -->
+                {{ product.name }} - {{ product.price }} руб.<br> <!-- Название и цена продукта -->
+                Описание: {{ product.description }} <!-- Описание продукта -->
             </div>
-            {% if product.on_sale %}
+            {% if product.on_sale %} <!-- Условие для отображения метки 'По акции', если продукт по акции -->
                 <span class="on-sale">По акции!</span>
             {% endif %}
         </li>
@@ -28,4 +29,4 @@
     </ul>
 {% endfor %}
 
-{% endblock %}
+{% endblock %} <!-- Конец блока 'content' -->

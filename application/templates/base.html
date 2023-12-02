@@ -1,48 +1,68 @@
-{% load static %}
+{% load static %} <!-- Подключение тегов статических файлов Django -->
 
 <!DOCTYPE html>
 <html lang="ru">
+<!-- Начало HTML-документа с указанием языка на русский -->
 <head>
     <meta charset="UTF-8">
+    <!-- Кодировка документа UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Адаптивный мета-тег для мобильных устройств -->
     <title>{% block title %}Default Title{% endblock %}</title>
+    <!-- Заголовок страницы с блоком для переопределения -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <!-- Подключение внешнего CSS-файла -->
 </head>
 <body>
     <header>
+        <!-- Секция шапки сайта -->
         <div class="logo">
-            <!-- Убедитесь, что у вас есть 'home' маршрут в urls.py -->
+            <!-- Ссылка с логотипом, ведущая на главную страницу -->
             <a href="{% url 'home' %}"><img src="{% static 'images/logo.png' %}" alt="Логотип ресторана" height="50"></a>
         </div>
         <nav>
+            <!-- Навигационная панель -->
             <ul>
-                <!-- Убедитесь, что у вас есть маршруты 'menu', 'news', 'profile' в urls.py -->
+                <!-- Список для навигационных ссылок -->
                 <li><a href="{% url 'menu' %}">Меню</a></li>
+                <!-- Ссылка на страницу меню -->
                 <li><a href="{% url 'news' %}">Новости</a></li>
+                <!-- Ссылка на страницу новостей -->
                 {% if user.is_authenticated %}
+                <!-- Условие для отображения ссылки на профиль, если пользователь аутентифицирован -->
                     <li><a href="{% url 'profile_url' %}">Профиль</a></li>
                 {% endif %}
             </ul>
         </nav>
         <div class="auth-links">
+            <!-- Секция для ссылок аутентификации -->
             {% if user.is_authenticated %}
+            <!-- Проверка аутентификации пользователя -->
                 <p>Привет, {{ user.username }}!</p>
+            <!-- Приветствие пользователя -->
                 <a href="{% url 'logout' %}">Выйти</a>
+            <!-- Ссылка для выхода из системы -->
             {% else %}
                 <a href="{% url 'login' %}">Войти</a> |
+            <!-- Ссылка на страницу входа -->
                 <a href="{% url 'register' %}">Регистрация</a>
+            <!-- Ссылка на страницу регистрации -->
             {% endif %}
         </div>
     </header>
     <main class="container">
+        <!-- Главный контент страницы -->
         {% block content %}
-        <!-- Содержимое основной части страницы будет здесь -->
+        <!-- Блок для содержимого, который переопределяется в дочерних шаблонах -->
         {% endblock %}
     </main>
     {% if messages %}
+    <!-- Секция для отображения сообщений Django -->
     <div class="messages">
         {% for message in messages %}
+        <!-- Перебор всех сообщений -->
         <div{% if message.tags %} class="{{ message.tags }}" {% endif %}>
+        <!-- Отображение сообщения с тегами, если они есть -->
             {{ message }}
         </div>
         {% endfor %}

@@ -1,26 +1,26 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Наследуем базовый шаблон, который включает общие элементы разметки -->
 
 {% block title %}
 Избранное
 {% endblock %}
 
-{% block content %}
-<h1>Избранное</h1>
+{% block content %} <!-- Блок для основного контента страницы -->
+<h1>Избранное</h1> <!-- Заголовок страницы -->
 
-<ul class="product-list">
-{% for favorite in favorites %}
-    <li>
-        <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" width="50" height="50" class="center-image">
-        <div class="product-info">
-            <a href="{% url 'product_detail' favorite.product.id %}" class="product-link">{{ favorite.product.name }}</a> - {{ favorite.product.price }} руб.<br>
-            Описание: {{ favorite.product.description }}
-            <!-- Можно добавить ссылку для удаления из избранного -->
+<ul class="product-list"> <!-- Начало списка продуктов, каждый элемент будет представлен в виде списка -->
+{% for favorite in favorites %} <!-- Цикл по всем избранным продуктам пользователя -->
+    <li> <!-- Элемент списка для каждого избранного продукта -->
+        <img src="{{ favorite.product.image.url }}" alt="{{ favorite.product.name }}" width="50" height="50" class="center-image"> <!-- Изображение продукта -->
+        <div class="product-info"> <!-- Контейнер для информации о продукте -->
+            <a href="{% url 'product_detail' favorite.product.id %}" class="product-link">{{ favorite.product.name }}</a> - {{ favorite.product.price }} руб.<br> <!-- Ссылка на детальную страницу продукта и его цена -->
+            Описание: {{ favorite.product.description }} <!-- Описание продукта -->
+            <!-- Ссылка для удаления продукта из избранного -->
             <a href="{% url 'remove_from_favorites' favorite.product.id %}" class="button">Удалить из избранного</a>
         </div>
     </li>
-{% empty %}
-    <li>Вы пока ничего не добавили в избранное.</li>
+{% empty %} <!-- Случай, когда список избранных продуктов пуст -->
+    <li>Вы пока ничего не добавили в избранное.</li> <!-- Сообщение, отображаемое пользователю -->
 {% endfor %}
 </ul>
 
-{% endblock %}
+{% endblock %} <!-- Конец блока content -->

@@ -1,25 +1,30 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
 
 {% block title %}
 {{ product.name }}
 {% endblock %}
 
-{% block content %}
-    <h1>{{ product.name }}</h1>
+{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
+    <h1>{{ product.name }}</h1> <!-- Отображает название продукта как главный заголовок -->
 
+    <!-- Выводит изображение продукта с заданными размерами -->
     <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300" height="300" class="center-image">
-    <div class="product-detail-description">
-        <p>{{ product.description }}</p>
-        <strong>Price: ${{ product.price }}</strong>
-        {% if user.is_authenticated %}
-            {% if is_favorite %}
+    <div class="product-detail-description"> <!-- Контейнер для описания продукта -->
+        <p>{{ product.description }}</p> <!-- Описание продукта -->
+        <strong>Price: {{ product.price }} руб.</strong> <!-- Цена продукта -->
+
+        {% if user.is_authenticated %} <!-- Проверка, авторизован ли пользователь -->
+            {% if is_favorite %} <!-- Проверка, находится ли продукт в избранном у пользователя -->
+                <!-- Ссылка для удаления продукта из избранного -->
                 <a href="{% url 'remove_from_favorites' product.id %}" class="button">Удалить из избранного</a>
             {% else %}
+                <!-- Ссылка для добавления продукта в избранное -->
                 <a href="{% url 'add_to_favorites' product.id %}" class="button">Добавить в избранное</a>
             {% endif %}
         {% else %}
+            <!-- Ссылка для входа, если пользователь не авторизован -->
             <a href="{% url 'login' %}" class="button">Войти, чтобы добавить в избранное</a>
         {% endif %}
     </div>
 
-{% endblock %}
+{% endblock %} <!-- Конец блока 'content' -->
