@@ -1,205 +1,205 @@
-/* Основные стили для всей страницы */
 body {
-    font-family: 'Georgia', serif; /* Установка шрифта */
-    background-color: #1a1a1a; /* Цвет фона страницы */
-    color: #e6e6e6; /* Цвет текста на странице */
-    margin: 0; /* Убираем отступы */
-    padding: 0; /* Убираем внутренние поля */
+    font-family: 'Georgia', serif;
+    background-color: #1a1a1a;
+    color: #e6e6e6;
+    margin: 0;
+    padding: 0;
 }
 
-/* Основной контейнер на странице */
 .container {
-    max-width: 1200px; /* Максимальная ширина */
-    margin: 50px auto; /* Центрирование и верхний/нижний отступы */
-    padding: 20px; /* Внутренние отступы */
-    background-color: #2e2e2e; /* Цвет фона контейнера */
-    border: 1px solid #444; /* Граница контейнера */
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4); /* Тень для контейнера */
+    max-width: 1200px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #2e2e2e;
+    border: 1px solid #444;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
-/* Стили для заголовков */
 h1, h2 {
-    color: #f9f3d9; /* Цвет заголовков */
-    border-bottom: 2px solid #444; /* Нижняя граница заголовков */
+    color: #f9f3d9;
+    border-bottom: 2px solid #444;
 }
 
-/* Стили для списка продуктов */
 .product-list {
-    list-style-type: none; /* Убираем маркеры списка */
-    padding: 0; /* Убираем внутренние отступы */
+    list-style-type: none;
+    padding: 0;
 }
 
-/* Стили для каждого элемента списка продуктов */
 .product-list li {
-    padding: 20px; /* Отступы для элементов списка */
-    border-bottom: 1px dashed #444; /* Граница между элементами */
-    display: flex; /* Включаем flexbox */
-    align-items: center; /* Центрирование элементов по вертикали */
-    justify-content: flex-start; /* Выравнивание элементов к началу */
+    padding: 20px;
+    border-bottom: 1px dashed #444;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Выравниваем элементы списка в начале контейнера */
 }
 
-/* Стили для изображений товаров в списке */
 .product-list li img {
-    width: auto; /* Автоматическая ширина изображения */
-    height: 100px; /* Фиксированная высота изображения */
-    object-fit: contain; /* Режим отображения содержимого */
+    width: auto; /* Устанавливаем ширину изображения автоматически */
+    height: 100px; /* Высота изображения фиксирована */
+    object-fit: contain; /* Убедимся, что изображение масштабируется правильно */
 }
 
-/* Стили для элементов, помеченных как на распродаже */
+/* Убедитесь, что стиль для .on-sale не переопределяет какие-либо необходимые свойства */
 .on-sale {
-    color: #3fa46a; /* Цвет текста */
-    margin-left: 10px; /* Отступ слева */
+    color: #3fa46a; /* Зеленоватый цвет */
+    margin-left: 10px; /* Добавляем отступ слева */
 }
 
-/* Стили для ссылок в списке продуктов */
+/* Если у вас есть специфические стили для первого элемента списка, убедитесь, что они не вызывают смещение */
+.product-list li:first-child {
+    /* Убрать или скорректировать стили, если они есть */
+}
+
+
 .product-list li a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #f9f3d9; /* Цвет текста */
-    transition: color 0.3s; /* Плавное изменение цвета */
+    text-decoration: none;
+    color: #f9f3d9;
+    transition: color 0.3s;
 }
 
-/* Стили для ссылок при наведении */
 .product-list li a:hover {
-    color: #f9c152; /* Цвет текста при наведении */
+    color: #f9c152;
 }
 
-/* Стили для блока с детальным описанием продукта */
 .product-detail {
-    display: flex; /* Включаем flexbox */
-    flex-direction: column; /* Вертикальное направление элементов */
-    align-items: center; /* Центрирование элементов по горизонтали */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* Стили для изображения в детальном описании продукта */
 .product-detail img {
-    max-width: 80%; /* Максимальная ширина изображения */
-    border: 1px solid #444; /* Граница вокруг изображения */
-    margin-top: 20px; /* Отступ сверху */
+    max-width: 80%;
+    border: 1px solid #444;
+    margin-top: 20px;
 }
 
-/* Стили для описания продукта */
 .product-detail-description {
-    text-align: center; /* Выравнивание текста по центру */
-    margin-top: 20px; /* Отступ сверху */
+    text-align: center;
+    margin-top: 20px;
 }
 
-/* Стили для центрирования изображений */
 .center-image {
-    display: block; /* Блочное отображение */
-    margin-left: auto; /* Автоматический левый отступ */
-    margin-right: auto; /* Автоматический правый отступ */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-/* Стили для шапки страницы */
+/* Стили для header и auth-links остаются без изменений */
+/* ... */
+
+/* Предыдущие стили */
+
 header {
-    display: flex; /* Включаем flexbox */
-    justify-content: space-between; /* Распределение пространства между элементами */
-    align-items: center; /* Центрирование элементов по вертикали */
-    background-color: #f8f8f8; /* Цвет фона шапки */
-    padding: 10px; /* Отступы в шапке */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f8f8;
+    padding: 10px;
 }
 
-/* Стили для логотипа в шапке */
 header .logo img {
-    height: 50px; /* Фиксированная высота логотипа */
+    height: 50px; /* Адаптируйте размер под ваш логотип */
 }
 
-/* Стили для навигационного меню */
 nav ul {
-    list-style: none; /* Убираем маркеры списка */
-    padding: 0; /* Обнуляем внутренние отступы */
-    margin: 0; /* Обнуляем внешние отступы */
-    display: flex; /* Включаем flexbox для горизонтального расположения */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
 }
 
-/* Стили для каждого пункта меню */
 nav li {
-    margin-left: 20px; /* Отступ слева для каждого пункта */
+    margin-left: 20px;
 }
 
-/* Стили для ссылок в меню */
 nav a {
-    text-decoration: none; /* Убираем подчеркивание */
-    font-size: 1.2em; /* Увеличиваем размер шрифта */
-    color: #333; /* Цвет текста */
+    text-decoration: none;
+    font-size: 1.2em;
+    color: #333;
 }
 
-/* Стили для ссылок при наведении */
 nav a:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
+    text-decoration: underline;
 }
 
-/* Стили для блока с ссылками аутентификации */
 .auth-links p {
-    display: inline; /* Строчное отображение */
-    margin-right: 10px; /* Отступ справа */
+    display: inline;
+    margin-right: 10px;
 }
 
-/* Стили для ссылок аутентификации */
 .auth-links a {
-    text-decoration: none; /* Убираем подчеркивание */
-    color: #333; /* Цвет текста */
+    text-decoration: none;
+    color: #333;
 }
 
-/* Стили для ссылок аутентификации при наведении */
 .auth-links a:hover {
-    text-decoration: underline; /* Подчеркивание при наведении */
+    text-decoration: underline;
 }
 
-/* Стили для основного контейнера */
+/* Основные стили */
+
 .container {
-    margin-top: 20px; /* Верхний отступ */
+    margin-top: 20px;
 }
 
-/* Стили для кнопок добавления в избранное */
+/* Стили для кнопок */
 .btn-favorites {
-    display: inline-block; /* Блочно-строчное отображение */
-    padding: 10px 15px; /* Внутренние отступы */
-    margin-top: 20px; /* Верхний отступ */
-    background-color: #3fa46a; /* Цвет фона */
-    color: white; /* Цвет текста */
-}
+    display: inline-block;
+    padding: 10px 15px;
+    margin-top: 20px; /* Расстояние от формы или другого контента выше */
+    background-color: #3fa46a; /* Цвет фона кнопки, выберите цвет, подходящий к вашему дизайну */
+    color: white; /* Ц
 
-/* Стили для списка продуктов */
 .product-list {
-    display: flex; /* Включаем flexbox */
-    flex-direction: column; /* Вертикальное расположение элементов */
-    align-items: center; /* Выравнивание по центру */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Выравнивание элементов по центру */
 }
 
-/* Стили для описания продукта */
 .product-detail-description {
     text-align: center; /* Выравнивание текста по центру */
 }
 
-/* Стили для списка продуктов */
 .product-list {
-    display: flex; /* Включаем flexbox */
-    flex-direction: column; /* Вертикальное расположение элементов */
-    align-items: center; /* Выравнивание по центру */
-    width: 100%; /* Ширина 100% */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 
-/* Стили для каждого элемента списка продуктов */
 .product-list li {
-    width: 100%; /* Ширина элемента */
-    max-width: 600px; /* Максимальная ширина элемента */
-    display: flex; /* Включаем flexbox */
-    align-items: center; /* Выравнивание элементов по вертикали */
-    margin-bottom: 10px; /* Отступ снизу */
-    border-bottom: 1px solid #ccc; /* Граница снизу */
+    width: 100%;
+    max-width: 600px; /* или любой другой размер, который подходит под ваш дизайн */
+    display: flex;
+    align-items: center; /* если вы хотите, чтобы изображение и информация о товаре были на одном уровне */
+    margin-bottom: 10px; /* добавляет пространство между элементами списка */
+    border-bottom: 1px solid #ccc; /* добавляет границу между элементами списка */
 }
 
-/* Стили для информации о продукте */
 .product-info {
-    margin-left: 10px; /* Отступ слева */
+    margin-left: 10px; /* добавляет пространство между изображением и информацией о товаре */
 }
 
-/* Стили для кнопок в списке избранного */
+/* Для кнопок внутри списка избранного, делаем их меньше */
 .product-list .button {
-    padding: 8px 12px; /* Внутренние отступы */
-    font-size: 14px; /* Размер шрифта */
+    padding: 8px 12px;
+    font-size: 14px;
 }
 
-/* Стили для кнопок на странице детального о
+/* Стили для кнопок на странице product_detail, чтобы они были одинаковыми */
+.product-detail .button {
+    /* Те же стили, что и для .product-list .button */
+}
 
+.button {
+    padding: 10px 15px;
+    background-color: #3fa46a; /* Зеленый цвет, например */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #2e5d34; /* Более темный оттенок зеленого при наведении */
+}
