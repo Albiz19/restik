@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}Корзина{% endblock %}
+
+{% block content %}
+<h1>Корзина</h1>
+
+{% if cart_items %}
+    <ul class="cart-items-list">
+        {% for item in cart_items %}
+            <li class="cart-item">
+                <img src="{{ item.product.image.url }}" alt="{{ item.product.name }}" width="50" height="50">
+                <span class="cart-item-name">{{ item.product.name }}</span>
+
+                <!-- Статичный выпадающий список для выбора количества -->
+                <select name="quantity" class="quantity-select" data-product-id="{{ item.product.id }}">
+                    <option value="1" {% if item.quantity == 1 %}selected{% endif %}>1</option>
+                    <option value="2" {% if item.quantity == 2 %}selected{% endif %}>2</option>
+                    <option value="3" {% if item.quantity == 3 %}selected{% endif %}>3</option>
+                    <option value="4" {% if item.quantity == 4 %}selected{% endif %}>4</option>
+                    <option value="5" {% if item.quantity == 5 %}selected{% endif %}>5</option>
+                    <option value="6" {% if item.quantity == 6 %}selected{% endif %}>6</option>
+                    <option value="7" {% if item.quantity == 7 %}selected{% endif %}>7</option>
+                    <option value="8" {% if item.quantity == 8 %}selected{% endif %}>8</option>
+                    <option value="9" {% if item.quantity == 9 %}selected{% endif %}>9</option>
+                    <option value="10" {% if item.quantity == 10 %}selected{% endif %}>10</option>
+                </select>
+
+                <a href="{% url 'remove_from_cart' item.product.id %}" class="button remove-from-cart">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>Ваша корзина пуста.</p>
+{% endif %}
+{% endblock %}

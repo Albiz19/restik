@@ -5,22 +5,30 @@
 {% endblock %}
 
 {% block content %}
-    <h1>{{ product.name }}</h1>
-
+<div class="product-detail-container">
     <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300" height="300" class="center-image">
-    <div class="product-detail-description">
-        <p>{{ product.description }}</p>
-        <strong>Price: {{ product.price }} руб.</strong>
 
-        {% if user.is_authenticated %}
-            {% if is_favorite %}
-                <a href="{% url 'remove_from_favorites' product.id %}" class="button">Удалить из избранного</a>
-            {% else %}
-                <a href="{% url 'add_to_favorites' product.id %}" class="button">Добавить в избранное</a>
-            {% endif %}
-        {% else %}
-            <a href="{% url 'login' %}" class="button">Войти, чтобы добавить в избранное</a>
-        {% endif %}
+    <div class="product-text">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p class="price">Цена: {{ product.price }} руб.</p>
     </div>
 
+    <div class="product-actions">
+        {% if user.is_authenticated %}
+            {% if in_cart %}
+                <a href="{% url 'remove_from_cart' product.id %}" class="button in-cart">Удалить из корзины</a>
+            {% else %}
+                <a href="{% url 'add_to_cart' product.id %}" class="button add-to-cart">Добавить в корзину</a>
+            {% endif %}
+            {% if is_favorite %}
+                <a href="{% url 'remove_from_favorites' product.id %}" class="button remove-from-favorites">Удалить из избранного</a>
+            {% else %}
+                <a href="{% url 'add_to_favorites' product.id %}" class="button add-to-favorites">Добавить в избранное</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="button login">Войти, чтобы добавить в избранное</a>
+        {% endif %}
+    </div>
+</div>
 {% endblock %}
