@@ -1,18 +1,16 @@
-{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
+{% extends 'base.html' %}
 
-{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
-<h2>Профиль пользователя</h2> <!-- Заголовок страницы -->
+{% block content %}
+<h2>Профиль пользователя</h2>
 
-<form method="post"> <!-- Форма для отправки данных профиля с методом POST -->
-    {% csrf_token %} <!-- Токен CSRF для защиты от CSRF-атак -->
-    {{ form.as_p }} <!-- Рендеринг формы Django. as_p означает, что каждое поле будет обернуто в тег <p> -->
-    <button type="submit">Сохранить изменения</button> <!-- Кнопка для отправки формы -->
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Сохранить изменения</button>
 </form>
 
-<!-- Контейнер для кнопки просмотра избранных товаров -->
 <div class="favorites-button">
-    <!-- Ссылка на страницу избранных товаров -->
     <a href="{% url 'favorites' %}" class="btn-favorites">Просмотреть избранное</a>
 </div>
 
-{% endblock %} <!-- Конец блока 'content' -->
+{% endblock %}

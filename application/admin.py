@@ -3,41 +3,36 @@ from .models import Category, Product, RestaurantInfo, Cart, Favorite, News
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name')  # Определяет поля, которые будут отображаться в списке объектов в админке
-    search_fields = ('name',)  # Поля, по которым можно осуществлять поиск в админке
+    list_display = ('id', 'name')
+    search_fields = ('name',)
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'published_date', 'id')  # Отображаемые поля для новостей
-    search_fields = ('title', 'content')  # Поля для поиска по новостям
-    list_filter = ('published_date',)  # Фильтры для списка новостей
-    date_hierarchy = 'published_date'  # Создает иерархию дат для удобной навигации по датам
+    list_display = ('title', 'published_date', 'id')
+    search_fields = ('title', 'content')
+    list_filter = ('published_date',)
+    date_hierarchy = 'published_date'
 
 @admin.register(Product)
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'category', 'price', 'on_sale')  # Отображаемые поля для продуктов
-    list_filter = ('category', 'on_sale')  # Фильтры для списка продуктов
-    search_fields = ('name',)  # Поля для поиска продуктов
+    list_display = ('id', 'name', 'category', 'price', 'on_sale')
+    list_filter = ('category', 'on_sale')
+    search_fields = ('name',)
 
-# Пример кода для администратора пользовательской модели (закомментирован)
-# @admin.register(CustomUser)
-# class CustomUserAdmin(admin.ModelAdmin):
-#     list_display = ('id', 'username', 'email', 'phone', 'first_name', 'last_name', 'birth_date')
-#     search_fields = ('username', 'email', 'phone', 'first_name', 'last_name')
 
 @admin.register(RestaurantInfo)
 class RestaurantInfoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'address', 'phone')  # Отображаемые поля для информации о ресторане
-    search_fields = ('name', 'address', 'phone')  # Поля для поиска информации о ресторане
+    list_display = ('id', 'name', 'address', 'phone')
+    search_fields = ('name', 'address', 'phone')
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'quantity')  # Отображаемые поля для корзины
-    list_filter = ('user', 'product')  # Фильтры для списка корзины
-    search_fields = ('user__username', 'product__name')  # Поля для поиска в корзине
+    list_display = ('id', 'user', 'product', 'quantity')
+    list_filter = ('user', 'product')
+    search_fields = ('user__username', 'product__name')
 
 @admin.register(Favorite)
 class FavoriteAdmin(admin.ModelAdmin):
-    list_display = ('id', 'user', 'product', 'timestamp')  # Отображаемые поля для избранного
-    list_filter = ('user', 'product')  # Фильтры для списка избранных товаров
-    search_fields = ('user__username', 'product__name')  # Поля для поиска в избранных
+    list_display = ('id', 'user', 'product', 'timestamp')
+    list_filter = ('user', 'product')
+    search_fields = ('user__username', 'product__name')

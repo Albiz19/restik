@@ -1,7 +1,7 @@
 body {
     font-family: 'Georgia', serif;
     background-color: #1a1a1a;
-    color: #e6e6e6;
+    color: lightslategrey;
     margin: 0;
     padding: 0;
 }
@@ -203,3 +203,110 @@ nav a:hover {
 .button:hover {
     background-color: #2e5d34; /* Более темный оттенок зеленого при наведении */
 }
+
+.button {
+    /* Общие стили для кнопок */
+}
+
+.add-to-cart {
+    background-color: blue;
+    /* другие стили для кнопки добавления в корзину */
+}
+
+.in-cart {
+    background-color: gray;
+    /* стили для кнопки, если товар уже в корзине */
+}
+
+.login-to-add {
+    background-color: green;
+    /* стили для кнопки входа */
+}
+.product-detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 600px;
+    margin: auto;
+}
+
+.product-text {
+    text-align: center;
+}
+
+.product-actions {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    /* Дополнительные стили для кнопки */
+    text-decoration: none;
+    color: white;
+    background-color: #5cb85c; /* Пример цвета кнопки */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #4cae4c; /* Темнее при наведении */
+}
+
+.button.in-cart {
+    background-color: #d9534f; /* Цвет для "Удалить из корзины" */
+}
+
+.button.in-cart:hover {
+    background-color: #c9302c;
+}
+
+.button.add-to-favorites,
+.button.remove-from-favorites {
+    background-color: #f0ad4e; /* Цвет для кнопок избранного */
+}
+
+.button.add-to-favorites:hover,
+.button.remove-from-favorites:hover {
+    background-color: #ec971f;
+}
+
+.button.login {
+    background-color: #337ab7; /* Цвет для кнопки "Войти" */
+}
+
+.button.login:hover {
+    background-color: #286090;
+}
+.cart-items-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart-item img {
+    margin-right: 10px;
+}
+
+.cart-item-name {
+    margin-right: 10px;
+}
+
+.cart-item-quantity {
+    margin-right: 10px;
+}
+
+.remove-from-cart {
+    background-color: #d9534f;
+    /* ... другие стили кнопки ... */
+}
+

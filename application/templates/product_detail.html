@@ -1,30 +1,34 @@
-{% extends 'base.html' %} <!-- Расширяет базовый шаблон 'base.html' -->
+{% extends 'base.html' %}
 
 {% block title %}
 {{ product.name }}
 {% endblock %}
 
-{% block content %} <!-- Определяет содержимое для блока 'content' в базовом шаблоне -->
-    <h1>{{ product.name }}</h1> <!-- Отображает название продукта как главный заголовок -->
-
-    <!-- Выводит изображение продукта с заданными размерами -->
+{% block content %}
+<div class="product-detail-container">
     <img src="{{ product.image.url }}" alt="{{ product.name }}" width="300" height="300" class="center-image">
-    <div class="product-detail-description"> <!-- Контейнер для описания продукта -->
-        <p>{{ product.description }}</p> <!-- Описание продукта -->
-        <strong>Price: {{ product.price }} руб.</strong> <!-- Цена продукта -->
 
-        {% if user.is_authenticated %} <!-- Проверка, авторизован ли пользователь -->
-            {% if is_favorite %} <!-- Проверка, находится ли продукт в избранном у пользователя -->
-                <!-- Ссылка для удаления продукта из избранного -->
-                <a href="{% url 'remove_from_favorites' product.id %}" class="button">Удалить из избранного</a>
-            {% else %}
-                <!-- Ссылка для добавления продукта в избранное -->
-                <a href="{% url 'add_to_favorites' product.id %}" class="button">Добавить в избранное</a>
-            {% endif %}
-        {% else %}
-            <!-- Ссылка для входа, если пользователь не авторизован -->
-            <a href="{% url 'login' %}" class="button">Войти, чтобы добавить в избранное</a>
-        {% endif %}
+    <div class="product-text">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p class="price">Цена: {{ product.price }} руб.</p>
     </div>
 
-{% endblock %} <!-- Конец блока 'content' -->
+    <div class="product-actions">
+        {% if user.is_authenticated %}
+            {% if in_cart %}
+                <a href="{% url 'remove_from_cart' product.id %}" class="button in-cart">Удалить из корзины</a>
+            {% else %}
+                <a href="{% url 'add_to_cart' product.id %}" class="button add-to-cart">Добавить в корзину</a>
+            {% endif %}
+            {% if is_favorite %}
+                <a href="{% url 'remove_from_favorites' product.id %}" class="button remove-from-favorites">Удалить из избранного</a>
+            {% else %}
+                <a href="{% url 'add_to_favorites' product.id %}" class="button add-to-favorites">Добавить в избранное</a>
+            {% endif %}
+        {% else %}
+            <a href="{% url 'login' %}" class="button login">Войти, чтобы добавить в избранное</a>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
