@@ -21,7 +21,6 @@
                     <li><a href="{% url 'profile_url' %}">Профиль</a></li>
                 {% endif %}
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'profile_url' %}">Профиль</a></li>
                     <li><a href="{% url 'cart' %}">Корзина</a></li> <!-- Добавляем ссылку на корзину -->
                 {% endif %}
             </ul>
