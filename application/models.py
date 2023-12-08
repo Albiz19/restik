@@ -40,20 +40,6 @@ class Product(models.Model):
         verbose_name_plural = 'Товары'
 
 
-class RestaurantInfo(models.Model):
-    name = models.CharField(max_length=150, verbose_name='Название ресторана')
-    address = models.CharField(max_length=250, verbose_name='Адрес')
-    phone = models.CharField(max_length=15, verbose_name='Телефон')
-    location = models.TextField(verbose_name='Расположение')
-
-    def __str__(self):
-        return self.name
-
-    class Meta:
-        verbose_name = 'Информация о ресторане'
-        verbose_name_plural = 'Информация о ресторанах'
-
-
 class Cart(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='cart', verbose_name='Пользователь')
     product = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name='Товар')

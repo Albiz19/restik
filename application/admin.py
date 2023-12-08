@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, Product, RestaurantInfo, Cart, Favorite, News
+from .models import Category, Product, Cart, Favorite, News
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
@@ -19,11 +19,6 @@ class ProductAdmin(admin.ModelAdmin):
     list_filter = ('category', 'on_sale')
     search_fields = ('name',)
 
-
-@admin.register(RestaurantInfo)
-class RestaurantInfoAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'address', 'phone')
-    search_fields = ('name', 'address', 'phone')
 
 @admin.register(Cart)
 class CartAdmin(admin.ModelAdmin):
